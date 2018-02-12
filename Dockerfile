@@ -22,7 +22,8 @@ RUN apt-get update && \
         conda install -y futures;\
     fi && \
     conda update conda -y --force && \
-    conda clean -tipsy    
+    conda clean -tipsy && \
+    echo "PATH=/opt/miniconda${MINICONDA_VERSION}/bin:\${PATH}" > /etc/profile.d/miniconda.sh
     
 ENTRYPOINT ["conda"]
 CMD ["--help"]
