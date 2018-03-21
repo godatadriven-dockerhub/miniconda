@@ -1,4 +1,4 @@
-FROM debian:stretch
+FROM debian:stretch-slim
 
 ARG BUILD_DATE
 ARG MINICONDA_VERSION=3
@@ -15,6 +15,7 @@ RUN apt-get update && \
     bash /tmp/miniconda.sh -b -f -p "/opt/miniconda${MINICONDA_VERSION}" && \
     rm /tmp/miniconda.sh && \
     apt-get remove -y curl bzip2 && \
+    apt-get autoremove -y && \
     apt-get clean && \
     conda config --set auto_update_conda true && \
     conda config --set channel_priority false && \
