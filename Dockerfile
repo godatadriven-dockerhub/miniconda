@@ -18,7 +18,6 @@ RUN apt-get update && \
     apt-get purge -y --auto-remove curl bzip2 && \
     apt-get clean && \
     conda config --set auto_update_conda true && \
-    conda config --set channel_priority false && \
     if [ "$MINICONDA_VERSION" = "2" ]; then\
         conda install -y futures;\
     fi && \
