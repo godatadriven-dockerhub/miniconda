@@ -8,6 +8,8 @@ IMAGE_TAG=${IMAGE_NAME#*:}
 if [ "$IMAGE_TAG" = "3.6" ]; then
     docker tag $IMAGE_NAME ${IMAGE_REPO}:latest
     docker push ${IMAGE_REPO}:latest
+    docker tag $IMAGE_NAME ${IMAGE_REPO}:3
+    docker push ${IMAGE_REPO}:3
 fi
 
 if [ "$IMAGE_TAG" = "2.7" ]; then
