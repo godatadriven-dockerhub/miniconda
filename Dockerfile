@@ -16,7 +16,6 @@ RUN set -x && \
     curl -s --url "https://repo.continuum.io/miniconda/Miniconda${MINICONDA_VERSION}-latest-Linux-x86_64.sh" --output /tmp/miniconda.sh && \
     bash /tmp/miniconda.sh -b -f -p "/opt/miniconda${MINICONDA_VERSION}" && \
     rm /tmp/miniconda.sh && \
-    find /opt/miniconda${MINICONDA_VERSION} -depth \( \( -type d -a \( -name test -o -name tests \) \) -o \( -type f -a \( -name '*.pyc' -o -name '*.pyo' \) \) \) | xargs rm -rf && \
     apt-get purge -y --auto-remove curl bzip2 && \
     apt-get clean && \
     conda config --set auto_update_conda true && \
@@ -28,6 +27,7 @@ RUN set -x && \
     fi && \
     conda update conda -y --force && \
     conda clean -tipsy && \
+    find /opt/miniconda${MINICONDA_VERSION} -depth \( \( -type d -a \( -name test -o -name tests \) \) -o \( -type f -a \( -name '*.pyc' -o -name '*.pyo' \) \) \) | xargs rm -rf && \
     echo "PATH=/opt/miniconda${MINICONDA_VERSION}/bin:\${PATH}" > /etc/profile.d/miniconda.sh
 
 ENTRYPOINT ["conda"]
