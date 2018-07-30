@@ -5,12 +5,12 @@ IMAGE_REPO=${IMAGE_NAME%:*}
 IMAGE_TAG=${IMAGE_NAME#*:}
 
 # Retag to latest
-if [ "$IMAGE_TAG" = "3" ]; then
+if [ "$IMAGE_TAG" = "3.6" ]; then
     docker tag $IMAGE_NAME ${IMAGE_REPO}:latest
     docker push ${IMAGE_REPO}:latest
 fi
 
-if [ "$IMAGE_TAG" = "2" ]; then
-	docker tag $IMAGE_NAME ${IMAGE_REPO}:2.7
-    docker push ${IMAGE_REPO}:2.7
+if [ "$IMAGE_TAG" = "2.7" ]; then
+	docker tag $IMAGE_NAME ${IMAGE_REPO}:2
+    docker push ${IMAGE_REPO}:2
 fi
