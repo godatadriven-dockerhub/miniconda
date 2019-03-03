@@ -9,4 +9,4 @@ MINICONDA_VERSION=${IMAGE_TAG:0:1}
 docker build --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` \
              --build-arg MINICONDA_VERSION=$MINICONDA_VERSION \
              --build-arg PYTHON_VERSION=$IMAGE_TAG \
-             -t $IMAGE_NAME .
+             -t $DOCKER_REPO:${DOCKER_TAG//,/ -t $DOCKER_REPO:} .
