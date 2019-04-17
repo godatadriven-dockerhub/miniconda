@@ -30,7 +30,6 @@ RUN set -x && \
         conda install python=$PYTHON_VERSION -y --force;\
     fi && \
     conda clean -tipsy && \
-    find /opt/miniconda${MINICONDA_VERSION} -depth \( \( -type d -a \( -name test -o -name tests \) \) -o \( -type f -a \( -name '*.pyc' -o -name '*.pyo' \) \) \) | xargs rm -rf && \
     echo "PATH=/opt/miniconda${MINICONDA_VERSION}/bin:\${PATH}" > /etc/profile.d/miniconda.sh
 
 ENTRYPOINT ["conda"]
