@@ -1,5 +1,5 @@
 version: '3.3'
 services:
   sut:
-    image: godatadriven/miniconda:${CACHE_TAG}
+    build: .
     command: conda --version
