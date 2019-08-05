@@ -28,7 +28,6 @@ RUN set -x && \
     fi && \
     if [ "$PYTHON_VERSION" = "3.5" ]; then\
         conda install python=$PYTHON_VERSION conda=4.5.11 -y --force;\
-    fi && \
     elif [ -n "$PYTHON_VERSION" ]; then\
         conda install python=$PYTHON_VERSION -y --force;\
     fi && \
