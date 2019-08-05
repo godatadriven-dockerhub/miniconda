@@ -5,3 +5,4 @@ services:
       context: tests
       args:
         IMAGE_NAME: ${IMAGE_NAME}
+    command: -v --lsbsysinit /tests
