@@ -26,7 +26,10 @@ RUN set -x && \
     if [ "$MINICONDA_RELEASE" = "latest" ]; then\
         conda update conda -y --force;\
     fi && \
-    if [ -n "$PYTHON_VERSION" ]; then\
+    if [ "$PYTHON_VERSION" = "3.5" ]; then\
+        conda install python=$PYTHON_VERSION conda=4.5.11 -y --force;\
+    fi && \
+    elif [ -n "$PYTHON_VERSION" ]; then\
         conda install python=$PYTHON_VERSION -y --force;\
     fi && \
     conda clean -tipsy && \
