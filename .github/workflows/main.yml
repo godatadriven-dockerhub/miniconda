@@ -76,6 +76,11 @@ jobs:
                 docker-compose --file docker-compose.test.yml run sut
             fi
 
+      - name: Scan image
+        uses: anchore/scan-action@v2
+        with:
+          image: ${{ steps.prep.outputs.image_name }}
+
       - name: Login to DockerHub
         if: github.ref == 'refs/heads/master'
         uses: docker/login-action@v1 
