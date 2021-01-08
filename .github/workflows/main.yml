@@ -10,6 +10,7 @@ on:
   schedule:
     # * is a special character in YAML so you have to quote this string
     - cron:  '0 0 */1 * *'
+
 env:
   DOCKER_REPO: godatadriven/miniconda
 
@@ -37,15 +38,17 @@ jobs:
             PYTHON_VERSION=${IMAGE_TAG#*-}
             MINICONDA_VERSION=${PYTHON_VERSION:0:1}
             MINICONDA_RELEASE=${IMAGE_TAG%-*}
-            
+
+            echo ::set-output name=miniconda_version::${MINICONDA_VERSION}
+            echo ::set-output name=miniconda_release::${MINICONDA_RELEASE}
+            echo ::set-output name=python_version::${PYTHON_VERSION}
+
             DOCKER_IMAGE_NAME="$DOCKER_REPO:IMAGE_TAG"
             echo ::set-output name=image_name::${DOCKER_IMAGE_NAME}
             
             TAGS="$DOCKER_REPO:${DOCKER_TAG//,/,$DOCKER_REPO:}"
-            BUILD_ARGS="MINICONDA_VERSION=${MINICONDA_VERSION},MINICONDA_RELEASE=${MINICONDA_RELEASE},PYTHON_VERSION=${PYTHON_VERSION}"
-            
             echo ::set-output name=tags::${TAGS}
-            echo ::set-output name=build_args::${BUILD_ARGS}
+
             echo ::set-output name=created::$(date -u +'%Y-%m-%dT%H:%M:%SZ')
 
       - name: Build image
@@ -55,7 +58,10 @@ jobs:
          file: ./Dockerfile
          push: false
          tags: ${{ steps.prep.outputs.tags }}
-         build-args: ${{ steps.prep.outputs.build_args }}
+         build-args: |
+           MINICONDA_VERSION=${{ steps.prep.outputs.miniconda_version }}
+           MINICONDA_RELEASE=${{ steps.prep.outputs.miniconda_release }}
+           PYTHON_VERSION=${{ steps.prep.outputs.python_version }}
          labels: |
            org.opencontainers.image.source=${{ github.event.repository.clone_url }}
            org.opencontainers.image.created=${{ steps.prep.outputs.created }}
