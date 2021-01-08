@@ -37,7 +37,7 @@ jobs:
             PYTHON_VERSION=${IMAGE_TAG#*-}
             MINICONDA_VERSION=${PYTHON_VERSION:0:1}
             MINICONDA_RELEASE=${IMAGE_TAG%-*}
-
+            
             DOCKER_IMAGE_NAME="$DOCKER_REPO:IMAGE_TAG"
             echo ::set-output name=image_name::${DOCKER_IMAGE_NAME}
             
@@ -47,6 +47,7 @@ jobs:
             echo ::set-output name=tags::${TAGS}
             echo ::set-output name=build_args::${BUILD_ARGS}
             echo ::set-output name=created::$(date -u +'%Y-%m-%dT%H:%M:%SZ')
+
       - name: Build image
         uses: docker/build-push-action@v2
         with:
