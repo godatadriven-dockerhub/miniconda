@@ -14,7 +14,7 @@ ENV PATH="/opt/miniconda${MINICONDA_VERSION}/bin:${PATH}"
 RUN set -x && \
     apt-get update && \
     apt-get install -y curl bzip2 && \
-    curl -s --url "https://repo.continuum.io/miniconda/Miniconda${MINICONDA_VERSION}-${MINICONDA_RELEASE}-Linux-x86_64.sh" --output /tmp/miniconda.sh && \
+    curl -s --url "https://repo.anaconda.com/miniconda/Miniconda${MINICONDA_VERSION}-${MINICONDA_RELEASE}-Linux-x86_64.sh" --output /tmp/miniconda.sh && \
     bash /tmp/miniconda.sh -b -f -p "/opt/miniconda${MINICONDA_VERSION}" && \
     rm /tmp/miniconda.sh && \
     apt-get purge -y --auto-remove curl bzip2 && \
