@@ -43,7 +43,7 @@ jobs:
             echo ::set-output name=miniconda_release::${MINICONDA_RELEASE}
             echo ::set-output name=python_version::${PYTHON_VERSION}
 
-            DOCKER_IMAGE_NAME="$DOCKER_REPO:IMAGE_TAG"
+            DOCKER_IMAGE_NAME="$DOCKER_REPO:$IMAGE_TAG"
             echo ::set-output name=image_name::${DOCKER_IMAGE_NAME}
             
             TAGS="$DOCKER_REPO:${DOCKER_TAG//,/,$DOCKER_REPO:}"
