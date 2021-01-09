@@ -9,7 +9,7 @@ on:
       - master
   schedule:
     # * is a special character in YAML so you have to quote this string
-    - cron:  '0 0 */1 * *'
+    - cron:  '0 0 * * 2'
 
 env:
   DOCKER_REPO: godatadriven/miniconda
