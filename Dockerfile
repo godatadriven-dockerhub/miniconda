@@ -29,7 +29,7 @@ RUN set -x && \
     if [ -n "$PYTHON_VERSION" ]; then\
         conda install python=$PYTHON_VERSION -y --force;\
     fi && \
-    conda clean -tipsy && \
+    conda clean -tip && \
     echo "PATH=/opt/miniconda${MINICONDA_VERSION}/bin:\${PATH}" > /etc/profile.d/miniconda.sh
 
 ENTRYPOINT ["conda"]
